@@ -9,6 +9,11 @@
 
 var detectNetwork = function(cardNumber) {
   let twoDigits = cardNumber.slice(0, 2);
+  if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (twoDigits === '63' || twoDigits === '50')) {
+    return 'Maestro';
+  } else if ((twoDigits[0] === '6') && (cardNumber.length === 16 || cardNumber.length === 19 )) {
+    return 'Discover';
+  }
   if (twoDigits[0] === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
     return 'Visa';
   } else if (twoDigits[0] === '5' && cardNumber.length === 16) {

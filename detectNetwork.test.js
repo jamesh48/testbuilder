@@ -157,12 +157,48 @@ describe('Maestro', function() {
   it('has a prefix of 5018 and a length of 13', function() {
     detectNetwork('5018123443212').should.equal('Maestro');
   });
+  it('has a prefix of 5018 and a length of 14', function() {
+    detectNetwork('50181234432112').should.equal('Maestro');
+  });
+  it('has a prefix of 5018 and a length of 15', function() {
+    detectNetwork('501812344321123').should.equal('Maestro');
+  });
+  it('has a prefix of 5018 and a length of 16', function() {
+    detectNetwork('5018123443211234').should.equal('Maestro');
+  });
+  it('has a prefix of 5018 and a length of 17', function() {
+    detectNetwork('50181234432112345').should.equal('Maestro');
+  });
+  it('has a prefix of 5018 and a length of 18', function() {
+    detectNetwork('501812344321123456').should.equal('Maestro');
+  });
+  it('has a prefix of 5018 and a length of 19', function() {
+    detectNetwork('5018123443211234567').should.equal('Maestro');
+  });
   //5020s
   it('has a prefix of 5020 and a length of 12', function() {
     detectNetwork('502012344321').should.equal('Maestro');
   });
   it('has a prefix of 5020 and a length of 13', function() {
     detectNetwork('5020123443212').should.equal('Maestro');
+  });
+  it('has a prefix of 5020 and a length of 14', function() {
+    detectNetwork('50201234432112').should.equal('Maestro');
+  });
+  it('has a prefix of 5020 and a length of 15', function() {
+    detectNetwork('502012344321123').should.equal('Maestro');
+  });
+  it('has a prefix of 5020 and a length of 16', function() {
+    detectNetwork('5020123443211234').should.equal('Maestro');
+  });
+  it('has a prefix of 5020 and a length of 17', function() {
+    detectNetwork('50201234432112345').should.equal('Maestro');
+  });
+  it('has a prefix of 5020 and a length of 18', function() {
+    detectNetwork('502012344321123456').should.equal('Maestro');
+  });
+  it('has a prefix of 5020 and a length of 19', function() {
+    detectNetwork('5020123443211234567').should.equal('Maestro');
   });
   //5038s
   it('has a prefix of 5038 and a length of 12', function() {

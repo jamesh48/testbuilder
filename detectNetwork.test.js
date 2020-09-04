@@ -140,13 +140,59 @@ describe('MasterCard', function() {
 
 describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
-  // Implement these tests (and others) and make them pass!
+  // Implement these tests (and others) and make them pass
+  it('has a prefix of 65 and a length of 16', function() {
+    let randNum = '';
+    for (let i = 0; i < 14; i++) {
+      randNum += Math.floor(Math.random() * 10).toString();
+    }
+    detectNetwork('65' + randNum).should.equal('Discover');
+  }
+  );
+
+  it('has a prefix of 65 and a length of 19', function() {
+    let randNum = '';
+    for (let i = 0; i < 17; i++) {
+      randNum += Math.floor(Math.random() * 10).toString();
+    }
+    detectNetwork('65' + randNum).should.equal('Discover');
+  }
+  );
+
   it('has a prefix of 6011 and a length of 16', function() {
-    detectNetwork('6011123454326576').should.equal('Discover');
-  });
+    let randNum = '';
+    for (let i = 0; i < 12; i++) {
+      randNum += Math.floor(Math.random() * 10).toString();
+    }
+    detectNetwork('6011' + randNum).should.equal('Discover');
+  }
+  );
+
   it('has a prefix of 6011 and a length of 19', function() {
-    detectNetwork('6011453276859875678').should.equal('Discover');
-  });
+    let randNum = '';
+    for (let i = 0; i < 15; i++) {
+      randNum += Math.floor(Math.random() * 10).toString();
+    }
+    detectNetwork('6011' + randNum).should.equal('Discover');
+  }
+  );
+
+  for (let prefix = 644; prefix <= 649; prefix++) {
+    it('has a prefix of ' + prefix + ' and a length of 16', function () {
+      let randNum = '';
+      for (let i = 0; i < 13; i++) {
+        randNum += Math.floor(Math.random() * 10).toString();
+      }
+      detectNetwork(prefix + randNum).should.equal('Discover');
+    });
+    it('has a prefix of ' + prefix + ' and a length of 19', function () {
+      let randNum = '';
+      for (let i = 0; i < 16; i++) {
+        randNum += Math.floor(Math.random() * 10).toString();
+      }
+      detectNetwork(prefix + randNum).should.equal('Discover');
+    });
+  }
 });
 
 describe('Maestro', function() {

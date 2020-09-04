@@ -126,14 +126,13 @@ describe('MasterCard', function() {
   // and should, but that's just for learning), so once you've gotten
   // these tests to pass using should syntax, refactor your tests to
   // use either expect or should, but not both.
-  var should = chai.should();
 
   it('has a prefix of 54 and a length of 16', function() {
-    detectNetwork('5412345678901234').should.equal('MasterCard');
+    expect(detectNetwork('5412345678901234')).to.equal('MasterCard');
   });
 
   it('has a prefix of 55 and a length of 16', function() {
-    detectNetwork('5512345678901234').should.equal('MasterCard');
+    expect(detectNetwork('5512345678901234')).to.equal('MasterCard');
   });
 
 });
@@ -141,12 +140,13 @@ describe('MasterCard', function() {
 describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass
+  var expect = chai.expect;
   it('has a prefix of 65 and a length of 16', function() {
     let randNum = '';
     for (let i = 0; i < 14; i++) {
       randNum += Math.floor(Math.random() * 10).toString();
     }
-    detectNetwork('65' + randNum).should.equal('Discover');
+    expect(detectNetwork('65' + randNum)).to.equal('Discover');
   }
   );
 
@@ -155,7 +155,7 @@ describe('Discover', function() {
     for (let i = 0; i < 17; i++) {
       randNum += Math.floor(Math.random() * 10).toString();
     }
-    detectNetwork('65' + randNum).should.equal('Discover');
+    expect(detectNetwork('65' + randNum)).to.equal('Discover');
   }
   );
 
@@ -164,7 +164,7 @@ describe('Discover', function() {
     for (let i = 0; i < 12; i++) {
       randNum += Math.floor(Math.random() * 10).toString();
     }
-    detectNetwork('6011' + randNum).should.equal('Discover');
+    expect(detectNetwork('6011' + randNum)).to.equal('Discover');
   }
   );
 
@@ -173,7 +173,7 @@ describe('Discover', function() {
     for (let i = 0; i < 15; i++) {
       randNum += Math.floor(Math.random() * 10).toString();
     }
-    detectNetwork('6011' + randNum).should.equal('Discover');
+    expect(detectNetwork('6011' + randNum)).to.equal('Discover');
   }
   );
 
@@ -183,19 +183,20 @@ describe('Discover', function() {
       for (let i = 0; i < 13; i++) {
         randNum += Math.floor(Math.random() * 10).toString();
       }
-      detectNetwork(prefix + randNum).should.equal('Discover');
+      expect(detectNetwork(prefix + randNum)).to.equal('Discover');
     });
     it('has a prefix of ' + prefix + ' and a length of 19', function () {
       let randNum = '';
       for (let i = 0; i < 16; i++) {
         randNum += Math.floor(Math.random() * 10).toString();
       }
-      detectNetwork(prefix + randNum).should.equal('Discover');
+      expect(detectNetwork(prefix + randNum)).to.equal('Discover');
     });
   }
 });
 
 describe('Maestro', function() {
+  let expect = chai.expect;
 
   for (let cardLength = 12; cardLength <= 19; cardLength++) {
     it('has a prefix of 5018 and a length of ' + cardLength, function() {
@@ -203,7 +204,7 @@ describe('Maestro', function() {
       for (let i = 0; i < cardLength - 4; i++) {
         randNum += Math.floor(Math.random() * 10).toString();
       }
-      detectNetwork('5018' + randNum).should.equal('Maestro');
+      expect(detectNetwork('5018' + randNum)).to.equal('Maestro');
     });
 
     it('has a prefix of 5020 and a length of ' + cardLength, function () {
@@ -211,7 +212,7 @@ describe('Maestro', function() {
       for (let i = 0; i < cardLength - 4; i++) {
         randNum += Math.floor(Math.random() * 10).toString();
       }
-      detectNetwork('5020' + randNum).should.equal('Maestro');
+      expect(detectNetwork('5020' + randNum)).to.equal('Maestro');
     });
 
     it('has a prefix of 5038 and a length of ' + cardLength, function () {
@@ -219,7 +220,7 @@ describe('Maestro', function() {
       for (let i = 0; i < cardLength - 4; i++) {
         randNum += Math.floor(Math.random() * 10).toString();
       }
-      detectNetwork('5038' + randNum).should.equal('Maestro');
+      expect(detectNetwork('5038' + randNum)).to.equal('Maestro');
     });
 
     it('has a prefix of 6304 and a length of ' + cardLength, function () {
@@ -227,7 +228,7 @@ describe('Maestro', function() {
       for (let i = 0; i < cardLength - 4; i++) {
         randNum += Math.floor(Math.random() * 10).toString();
       }
-      detectNetwork('6304' + randNum).should.equal('Maestro');
+      expect(detectNetwork('6304' + randNum)).to.equal('Maestro');
     });
   }
 });

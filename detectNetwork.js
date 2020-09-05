@@ -9,9 +9,12 @@
 
 var detectNetwork = function(cardNumber) {
   let twoDigits = cardNumber.slice(0, 2);
-  if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (twoDigits === '63' || twoDigits === '50')) {
+  //China UnionPay
+  if (twoDigits === '62' && (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19)) {
+    return 'China UnionPay';
+  } else if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (twoDigits === '63' || twoDigits === '50')) {
     return 'Maestro';
-  } else if ((twoDigits[0] === '6') && (cardNumber.length === 16 || cardNumber.length === 19 )) {
+  } else if ((twoDigits === '60' || twoDigits === '64' || twoDigits === '65') && (cardNumber.length === 16 || cardNumber.length === 19 )) {
     return 'Discover';
   }
   if (twoDigits[0] === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
@@ -25,6 +28,7 @@ var detectNetwork = function(cardNumber) {
   } else {
     return 'error';
   }
+
   // Note: `cardNumber` will always be a string
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
   // The American Express network always starts with a 34 or 37 and is 15 digits long

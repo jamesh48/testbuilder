@@ -232,3 +232,17 @@ describe('Maestro', function() {
     });
   }
 });
+//China Union Pay Tests
+describe('China UnionPay', function() {
+  let expect = chai.expect;
+  //6282 - 6289
+  for (let prefix = 6282; prefix <= 6288; prefix++) {
+    it('has a prefix of ' + prefix + ' and a length of 16', function () {
+      let randNum = '';
+      for (let i = 0; i < 12; i++) {
+        randNum += Math.floor(Math.random() * 10).toString();
+      }
+      expect(detectNetwork(prefix + randNum)).to.equal('China UnionPay');
+    });
+  }
+});

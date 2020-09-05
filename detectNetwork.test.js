@@ -239,6 +239,9 @@ describe('China UnionPay', function() {
 
   //624-626
   for (let i = 16; i <= 19; i++) {
+    if (i === 17) {
+      continue;
+    }
     for (let prefix = 624; prefix <= 626; prefix++) {
       it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
         let randNum = '';
@@ -251,10 +254,28 @@ describe('China UnionPay', function() {
   }
   //6282 - 6288
   for (let i = 16; i <= 19; i++) {
+    if (i === 17) {
+      continue;
+    }
     for (let prefix = 6282; prefix <= 6288; prefix++) {
       it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
         let randNum = '';
         for (let i = 0; i < 12; i++) {
+          randNum += Math.floor(Math.random() * 10).toString();
+        }
+        expect(detectNetwork(prefix + randNum)).to.equal('China UnionPay');
+      });
+    }
+  }
+  //622126-622925
+  for (let i = 16; i <= 19; i++) {
+    if (i === 17) {
+      continue;
+    }
+    for (let prefix = 622126; prefix <= 622925; prefix++) {
+      it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
+        let randNum = '';
+        for (let j = 0; j < (i - 6); j++) {
           randNum += Math.floor(Math.random() * 10).toString();
         }
         expect(detectNetwork(prefix + randNum)).to.equal('China UnionPay');

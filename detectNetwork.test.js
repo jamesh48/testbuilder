@@ -236,42 +236,22 @@ describe('Maestro', function() {
 //China Union Pay Tests
 describe('China UnionPay', function() {
   let expect = chai.expect;
-
-  //624-626
+  //624-626, 6282 - 6288
   for (let i = 16; i <= 19; i++) {
-    if (i === 17) {
-      continue;
-    }
-    for (let prefix = 624; prefix <= 626; prefix++) {
-      it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
-        let randNum = '';
-        for (let i = 0; i < 13; i++) {
-          randNum += Math.floor(Math.random() * 10).toString();
-        }
-        expect(detectNetwork(prefix + randNum)).to.equal('China UnionPay');
-      });
-    }
-  }
-  //6282 - 6288
-  for (let i = 16; i <= 19; i++) {
-    if (i === 17) {
-      continue;
-    }
-    for (let prefix = 6282; prefix <= 6288; prefix++) {
-      it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
-        let randNum = '';
-        for (let i = 0; i < 12; i++) {
-          randNum += Math.floor(Math.random() * 10).toString();
-        }
-        expect(detectNetwork(prefix + randNum)).to.equal('China UnionPay');
-      });
+    for (let prefix = 624; prefix <= 6288; prefix++) {
+      if ((prefix >= 624 && prefix <= 626) || (prefix >= 6282 && prefix <= 6288)) {
+        it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
+          let randNum = '';
+          for (let j = 0; j < (i - prefix.toString().length); j++) {
+            randNum += Math.floor(Math.random() * 10).toString();
+          }
+          expect(detectNetwork(prefix + randNum)).to.equal('China UnionPay');
+        });
+      }
     }
   }
   //622126-622925
   for (let i = 16; i <= 19; i++) {
-    if (i === 17) {
-      continue;
-    }
     for (let prefix = 622126; prefix <= 622925; prefix++) {
       it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
         let randNum = '';
@@ -281,5 +261,55 @@ describe('China UnionPay', function() {
         expect(detectNetwork(prefix + randNum)).to.equal('China UnionPay');
       });
     }
+  }
+});
+
+//Switch Tests
+describe('Switch', function() {
+  let expect = chai.expect;
+
+  //4903, 4905, 4911, 4936, 6333, 6759
+  for (let i = 16; i <= 19; i++) {
+    if (i === 17) {
+      continue;
+    }
+    for (let prefix = 4903; prefix <= 6759; prefix++) {
+      if (prefix === 4903 || prefix === 4905 || prefix === 4911 || prefix === 4936 || prefix === 6333 || prefix === 6759) {
+        it('has a prefix of ' + prefix + ' and a length of ' + i, function () {
+          let randNum = '';
+          for (let j = 0; j < (i - 4); j++) {
+            randNum += Math.floor(Math.random() * 10).toString();
+          }
+          expect(detectNetwork(prefix + randNum)).to.equal('Switch');
+        });
+      }
+    }
+  }
+
+  //564182
+  for (let i = 16; i <= 19; i++) {
+    if (i === 17) {
+      continue;
+    }
+    it('has a prefix of 564182 ' + 'and a length of ' + i, function () {
+      let randNum = '';
+      for (let j = 0; j < (i - 6); j++) {
+        randNum += Math.floor(Math.random() * 10).toString();
+      }
+      expect(detectNetwork('564182' + randNum)).to.equal('Switch');
+    });
+  }
+  //633110
+  for (let i = 16; i <= 19; i++) {
+    if (i === 17) {
+      continue;
+    }
+    it('has a prefix of 633110 and a length of ' + i, function () {
+      let randNum = '';
+      for (let j = 0; j < (i - 6); j++) {
+        randNum += Math.floor(Math.random() * 10).toString();
+      }
+      expect(detectNetwork('633110' + randNum)).to.equal('Switch');
+    });
   }
 });

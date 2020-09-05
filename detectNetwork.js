@@ -13,7 +13,7 @@ var detectNetwork = function(cardNumber) {
   //Switch
   if ((twoDigits === '49' || twoDigits === '56' || twoDigits === '67' || twoDigits + '33' === cardNumber.slice(0, 4) || twoDigits + '3110' === cardNumber.slice(0, 6)) && (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19)) {
     return 'Switch';
-  } else if (twoDigits === '62' && (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19)) {
+  } else if (twoDigits === '62' && (cardNumber.length >= 16 && cardNumber.length <= 19)) {
     return 'China UnionPay';
   } else if ((cardNumber.length >= 12 && cardNumber.length <= 19) && (twoDigits === '63' || twoDigits === '50')) {
     return 'Maestro';
